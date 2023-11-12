@@ -19,7 +19,6 @@ namespace WindowsFormsApp1
 {
     public partial class DistrForm : Form
     {
-        static string choice = DataBank.choice;
         public DistrForm()
         {
             InitializeComponent();
@@ -45,12 +44,11 @@ namespace WindowsFormsApp1
                     int infoColumns = DataBank.qualArrayMale.GetLength(1);
                     string[,] infoArray = new string[partCount, DataBank.qualArrayMale.GetLength(1)];
 
-                    if (choice == "М")
+                    if (DataBank.choice == "М")
                         for (int i = 0; i < partCount; i++)
                             for (int j = 0; j < infoColumns; j++)
                                 infoArray[i, j] = DataBank.qualArrayMale[i, j];
-                    else
-                        for (int i = 0; i < partCount; i++)
+                    else for(int i = 0; i < partCount; i++)
                             for (int j = 0; j < infoColumns; j++)
                                 infoArray[i, j] = DataBank.qualArrayFemale[i, j];
 
@@ -427,6 +425,13 @@ namespace WindowsFormsApp1
                 Hide();
             }
 
+        }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            ImportForm form = new ImportForm();
+            form.Show();
+            Hide();
         }
     }
 }

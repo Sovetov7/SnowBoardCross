@@ -42,6 +42,7 @@
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.qualGridParticipants = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
+            this.backButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.qualGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.qualGridParticipants)).BeginInit();
@@ -174,11 +175,23 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Участники:";
             // 
+            // backButton
+            // 
+            this.backButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.backButton.Location = new System.Drawing.Point(12, 12);
+            this.backButton.Name = "backButton";
+            this.backButton.Size = new System.Drawing.Size(96, 35);
+            this.backButton.TabIndex = 33;
+            this.backButton.Text = "Назад";
+            this.backButton.UseVisualStyleBackColor = true;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
+            // 
             // DistrForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(532, 681);
+            this.Controls.Add(this.backButton);
             this.Controls.Add(this.TourWebButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label4);
@@ -216,6 +229,7 @@
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.DataGridView qualGridParticipants;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button backButton;
     }
 }
 
