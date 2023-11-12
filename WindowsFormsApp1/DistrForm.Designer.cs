@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DistrForm));
             this.qualGrid = new System.Windows.Forms.DataGridView();
             this.QualRaspr = new System.Windows.Forms.Button();
             this.countCBQual = new System.Windows.Forms.ComboBox();
@@ -39,8 +40,11 @@
             this.label6 = new System.Windows.Forms.Label();
             this.groupCBQual = new System.Windows.Forms.ComboBox();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.qualGridParticipants = new System.Windows.Forms.DataGridView();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.qualGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.qualGridParticipants)).BeginInit();
             this.SuspendLayout();
             // 
             // qualGrid
@@ -48,10 +52,10 @@
             this.qualGrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.qualGrid.ColumnHeadersHeight = 25;
             this.qualGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.qualGrid.Location = new System.Drawing.Point(12, 225);
+            this.qualGrid.Location = new System.Drawing.Point(12, 430);
             this.qualGrid.Name = "qualGrid";
             this.qualGrid.RowHeadersWidth = 50;
-            this.qualGrid.Size = new System.Drawing.Size(508, 233);
+            this.qualGrid.Size = new System.Drawing.Size(508, 175);
             this.qualGrid.TabIndex = 0;
             // 
             // QualRaspr
@@ -95,7 +99,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.label4.Location = new System.Drawing.Point(12, 196);
+            this.label4.Location = new System.Drawing.Point(7, 401);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(316, 26);
             this.label4.TabIndex = 3;
@@ -105,7 +109,7 @@
             // 
             this.TourWebButton.Enabled = false;
             this.TourWebButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.TourWebButton.Location = new System.Drawing.Point(12, 464);
+            this.TourWebButton.Location = new System.Drawing.Point(12, 611);
             this.TourWebButton.Name = "TourWebButton";
             this.TourWebButton.Size = new System.Drawing.Size(508, 57);
             this.TourWebButton.TabIndex = 6;
@@ -149,25 +153,50 @@
             this.groupCBQual.TabIndex = 2;
             this.groupCBQual.Text = "0";
             // 
+            // qualGridParticipants
+            // 
+            this.qualGridParticipants.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.qualGridParticipants.ColumnHeadersHeight = 25;
+            this.qualGridParticipants.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.qualGridParticipants.Location = new System.Drawing.Point(12, 223);
+            this.qualGridParticipants.Name = "qualGridParticipants";
+            this.qualGridParticipants.RowHeadersWidth = 50;
+            this.qualGridParticipants.Size = new System.Drawing.Size(508, 175);
+            this.qualGridParticipants.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.label2.Location = new System.Drawing.Point(12, 194);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(124, 26);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Участники:";
+            // 
             // DistrForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(532, 536);
+            this.ClientSize = new System.Drawing.Size(532, 681);
             this.Controls.Add(this.TourWebButton);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupCBQual);
             this.Controls.Add(this.countCBQual);
+            this.Controls.Add(this.qualGridParticipants);
             this.Controls.Add(this.QualRaspr);
             this.Controls.Add(this.qualGrid);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DistrForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Группы после квалификации";
             ((System.ComponentModel.ISupportInitialize)(this.qualGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.qualGridParticipants)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -185,6 +214,8 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox groupCBQual;
         private System.Windows.Forms.BindingSource bindingSource1;
+        private System.Windows.Forms.DataGridView qualGridParticipants;
+        private System.Windows.Forms.Label label2;
     }
 }
 

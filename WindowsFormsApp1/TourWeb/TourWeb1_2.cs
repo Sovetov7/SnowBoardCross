@@ -1,4 +1,5 @@
-﻿using System;
+﻿using iTextSharp.text;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,8 @@ namespace WindowsFormsApp1
     {
         private int groups = DataBank.countGroup;
         static string[,] array;
+        static string[,] finalMiniArray;
+        private int nextButtonCount = 0;
         public TourWeb1_2()
         {
             InitializeComponent();
@@ -31,14 +34,17 @@ namespace WindowsFormsApp1
         {
             string result;
             DataGridView[] dataGridViews = new DataGridView[2] { GridRace1, GridRace2};
-            array = new string[DataBank.countParticipantsInWeb, 4];
+            if (nextButtonCount == 0)
+            {
+                DataBank.countParticipantsInWeb /= 2;
+                nextButtonCount++;
+            }
             for (int i = 0; i < groups; i++)
             {
                 result = SwitchDataGrid(dataGridViews[i], "check");
                 if (result == "error") break;
                 else if (i == groups - 1)
                 {
-                    DataBank.countGroup = groups;
                     TourWebFinals form = new TourWebFinals();
                     form.Show();
                     Hide();
@@ -65,24 +71,6 @@ namespace WindowsFormsApp1
                 case 2:
                     result = CheckOrFill(gridRace, raceNumber, action);
                     break;
-                case 3:
-                    result = CheckOrFill(gridRace, raceNumber, action);
-                    break;
-                case 4:
-                    result = CheckOrFill(gridRace, raceNumber, action);
-                    break;
-                case 5:
-                    result = CheckOrFill(gridRace, raceNumber, action);
-                    break;
-                case 6:
-                    result = CheckOrFill(gridRace, raceNumber, action);
-                    break;
-                case 7:
-                    result = CheckOrFill(gridRace, raceNumber, action);
-                    break;
-                case 8:
-                    result = CheckOrFill(gridRace, raceNumber, action);
-                    break;
             }
             return result;
         }
@@ -90,20 +78,34 @@ namespace WindowsFormsApp1
         {
             int tourColumns = 4;
             int countParticipants = DataBank.countParticipantsInWeb;
-            string[,] array = new string[countParticipants, tourColumns];
+            array = new string[countParticipants, tourColumns];
+            finalMiniArray = new string[countParticipants, tourColumns];
             for (int i = 0; i < countParticipants; i++)
             {
                 array[i, 0] = DataBank.tourArray[i, 0];
                 array[i, 1] = DataBank.tourArray[i, 1];
             }
-
+            
             int partsInGroup = DataBank.countParticipantsInGroup;
             gridRace.RowCount = partsInGroup;
             gridRace.ColumnCount = tourColumns;
+
             gridRace.ColumnHeadersDefaultCellStyle.BackColor = Color.Gray;
             gridRace.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            //gridRace.Columns[0].Width = 20;
+            gridRace.Columns[0].Width = 140;
+            gridRace.Columns[1].Width = 60;
+            gridRace.RowHeadersWidth = 80;
+            gridRace.TopLeftHeaderCell.Value = "Участники";
+            gridRace.Columns[0].HeaderText = "Фамилия Имя";
+            gridRace.Columns[1].HeaderText = "Страна";
+            gridRace.Columns[2].HeaderText = "Место";
+            gridRace.Columns[3].HeaderText = "Примечания";
+            gridRace.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            gridRace.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            gridRace.RowHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            gridRace.Height = (countParticipants / groups) * 18 + 25;
             gridRace.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllHeaders;
+
             int tourRows = (raceNumber - 1) * partsInGroup + partsInGroup;
             int k = 0;
             for (int i = (raceNumber - 1) * partsInGroup; i < tourRows; i++)
@@ -112,9 +114,13 @@ namespace WindowsFormsApp1
                 {
                     if (k < partsInGroup)
                     {
+                        gridRace.Rows[k].HeaderCell.Value = string.Format((k + 1).ToString(), "0");
                         gridRace.Rows[k].Cells[j].Value = array[i, j];
-                        if (j == partsInGroup - 1 || j == partsInGroup - 2) gridRace.Rows[k].Cells[j].ReadOnly = false;
-                        else gridRace.Rows[k].Cells[j].ReadOnly = true;
+
+                        gridRace.Rows[k].Cells[0].ReadOnly = true;
+                        gridRace.Rows[k].Cells[1].ReadOnly = true;
+                        gridRace.Rows[k].Cells[2].ReadOnly = false;
+                        gridRace.Rows[k].Cells[3].ReadOnly = false;
                     }
                 }
                 k++;
@@ -127,13 +133,16 @@ namespace WindowsFormsApp1
         }
         private string CheckDataGrid(DataGridView gridRace, int raceNumber)
         {
+
             int countParticipants = DataBank.countParticipantsInWeb;
             int tourColumns = 4;
             int tourRows = gridRace.RowCount;
             int qualCount = 0;
             int place = tourRows;
+            //////MiniFinal
+            //////
             List<string> list = new List<string>();
-
+            
             for (int i = 0; i < tourRows; i++)
                 if (gridRace.Rows[i].Cells[2].Value != null)
                     list.Add(gridRace.Rows[i].Cells[2].Value.ToString());
@@ -168,22 +177,33 @@ namespace WindowsFormsApp1
                 tourArrRows = (raceNumber - 1) * (tourRows / 2) + tourRows / 2;
 
                 int k = (raceNumber - 1) * (tourRows / 2);
+                int f = (raceNumber - 1) * (tourRows / 2);
                 for (int i = 0; i < tourRows; i++)
                 {
-                    if (k < tourArrRows)
+                    string cell = (string)gridRace.Rows[i].Cells[3].Value;
+                    if (k < tourArrRows && (cell == "Q" || cell == "q"))
                     {
-                        string cell = (string)gridRace.Rows[i].Cells[3].Value;
-                        if (cell == "Q" || cell == "q")
+                        for (int j = 0; j < tourColumns; j++)
+                            array[k, j] = gridRace.Rows[i].Cells[j].Value.ToString();
+                        k++;
+                    }
+                    else if (f < tourArrRows)
+                    {
+                        for (int j = 0; j < tourColumns; j++)
                         {
-                            for (int j = 0; j < tourColumns; j++)
-                                array[k, j] = gridRace.Rows[i].Cells[j].Value.ToString();
-                            k++;
+                            if (cell == null && j == 3) finalMiniArray[f, 3] = "";
+                            else finalMiniArray[f, j] = gridRace.Rows[i].Cells[j].Value.ToString();
                         }
+                        f++;
                     }
                 }
-                if (raceNumber == countParticipants / 2)
-                    DataBank.tourArray = array;
 
+                if (raceNumber == groups)
+                {
+                    DataBank.tourArray = array;
+                    DataBank.finalMiniArray = finalMiniArray;
+                }
+                DataBank.AllTables(gridRace, this.Text, raceNumber);
                 return "success";
             }
         }

@@ -28,16 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImportForm));
             this.button1 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.QualGridMale = new System.Windows.Forms.DataGridView();
-            this.QualGridFemale = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.nextButtonFemale = new System.Windows.Forms.Button();
             this.labelMale = new System.Windows.Forms.Label();
             this.labelFemale = new System.Windows.Forms.Label();
             this.nextButtonMale = new System.Windows.Forms.Button();
+            this.QualGridFemale = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.QualGridMale)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.QualGridFemale)).BeginInit();
             this.SuspendLayout();
@@ -72,27 +73,18 @@
             // 
             this.QualGridMale.ColumnHeadersHeight = 25;
             this.QualGridMale.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.QualGridMale.Location = new System.Drawing.Point(12, 185);
+            this.QualGridMale.Location = new System.Drawing.Point(12, 193);
             this.QualGridMale.Name = "QualGridMale";
             this.QualGridMale.RowHeadersWidth = 50;
             this.QualGridMale.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.QualGridMale.Size = new System.Drawing.Size(508, 130);
+            this.QualGridMale.Size = new System.Drawing.Size(508, 190);
             this.QualGridMale.TabIndex = 10;
-            // 
-            // QualGridFemale
-            // 
-            this.QualGridFemale.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.QualGridFemale.Location = new System.Drawing.Point(12, 394);
-            this.QualGridFemale.Name = "QualGridFemale";
-            this.QualGridFemale.RowHeadersWidth = 50;
-            this.QualGridFemale.Size = new System.Drawing.Size(508, 130);
-            this.QualGridFemale.TabIndex = 11;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.label1.Location = new System.Drawing.Point(12, 119);
+            this.label1.Location = new System.Drawing.Point(12, 127);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(115, 26);
             this.label1.TabIndex = 8;
@@ -102,7 +94,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.label2.Location = new System.Drawing.Point(12, 328);
+            this.label2.Location = new System.Drawing.Point(12, 413);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(120, 26);
             this.label2.TabIndex = 8;
@@ -112,7 +104,7 @@
             // 
             this.nextButtonFemale.Enabled = false;
             this.nextButtonFemale.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.nextButtonFemale.Location = new System.Drawing.Point(153, 328);
+            this.nextButtonFemale.Location = new System.Drawing.Point(153, 413);
             this.nextButtonFemale.Name = "nextButtonFemale";
             this.nextButtonFemale.Size = new System.Drawing.Size(367, 60);
             this.nextButtonFemale.TabIndex = 9;
@@ -124,7 +116,7 @@
             // 
             this.labelMale.AutoSize = true;
             this.labelMale.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.labelMale.Location = new System.Drawing.Point(12, 153);
+            this.labelMale.Location = new System.Drawing.Point(12, 161);
             this.labelMale.Name = "labelMale";
             this.labelMale.Size = new System.Drawing.Size(0, 26);
             this.labelMale.TabIndex = 8;
@@ -133,7 +125,7 @@
             // 
             this.labelFemale.AutoSize = true;
             this.labelFemale.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.labelFemale.Location = new System.Drawing.Point(12, 362);
+            this.labelFemale.Location = new System.Drawing.Point(12, 447);
             this.labelFemale.Name = "labelFemale";
             this.labelFemale.Size = new System.Drawing.Size(0, 26);
             this.labelFemale.TabIndex = 8;
@@ -142,7 +134,7 @@
             // 
             this.nextButtonMale.Enabled = false;
             this.nextButtonMale.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.nextButtonMale.Location = new System.Drawing.Point(161, 119);
+            this.nextButtonMale.Location = new System.Drawing.Point(161, 127);
             this.nextButtonMale.Name = "nextButtonMale";
             this.nextButtonMale.Size = new System.Drawing.Size(359, 60);
             this.nextButtonMale.TabIndex = 12;
@@ -150,11 +142,22 @@
             this.nextButtonMale.UseVisualStyleBackColor = true;
             this.nextButtonMale.Click += new System.EventHandler(this.nextButtonMale_Click);
             // 
+            // QualGridFemale
+            // 
+            this.QualGridFemale.ColumnHeadersHeight = 25;
+            this.QualGridFemale.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.QualGridFemale.Location = new System.Drawing.Point(12, 479);
+            this.QualGridFemale.Name = "QualGridFemale";
+            this.QualGridFemale.RowHeadersWidth = 50;
+            this.QualGridFemale.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.QualGridFemale.Size = new System.Drawing.Size(508, 190);
+            this.QualGridFemale.TabIndex = 10;
+            // 
             // ImportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(532, 536);
+            this.ClientSize = new System.Drawing.Size(532, 681);
             this.Controls.Add(this.nextButtonMale);
             this.Controls.Add(this.QualGridFemale);
             this.Controls.Add(this.QualGridMale);
@@ -165,6 +168,7 @@
             this.Controls.Add(this.labelMale);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label5);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ImportForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Импорт";
@@ -180,12 +184,12 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridView QualGridMale;
-        private System.Windows.Forms.DataGridView QualGridFemale;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button nextButtonFemale;
         private System.Windows.Forms.Label labelMale;
         private System.Windows.Forms.Label labelFemale;
         private System.Windows.Forms.Button nextButtonMale;
+        private System.Windows.Forms.DataGridView QualGridFemale;
     }
 }

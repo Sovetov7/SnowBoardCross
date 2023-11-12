@@ -1,4 +1,5 @@
-﻿using System;
+﻿using iTextSharp.text;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using WindowsFormsApp1.TourWeb;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskBand;
@@ -17,9 +19,11 @@ namespace WindowsFormsApp1
 {
     public partial class DistrForm : Form
     {
+        static string choice = DataBank.choice;
         public DistrForm()
         {
             InitializeComponent();
+            DataBank.list = new List<DocumentInfo>();
             if (DataBank.choice == "М") Text += ": Мужчины";
             else Text += ": Женщины";
             countCBQual.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -38,6 +42,49 @@ namespace WindowsFormsApp1
                 {
                     DataBank.countParticipantsInWeb = partCount;
                     DataBank.countGroup = groupCount;
+                    int infoColumns = DataBank.qualArrayMale.GetLength(1);
+                    string[,] infoArray = new string[partCount, DataBank.qualArrayMale.GetLength(1)];
+
+                    if (choice == "М")
+                        for (int i = 0; i < partCount; i++)
+                            for (int j = 0; j < infoColumns; j++)
+                                infoArray[i, j] = DataBank.qualArrayMale[i, j];
+                    else
+                        for (int i = 0; i < partCount; i++)
+                            for (int j = 0; j < infoColumns; j++)
+                                infoArray[i, j] = DataBank.qualArrayFemale[i, j];
+
+                    int partsInGroup = DataBank.countParticipantsInGroup;
+                    qualGridParticipants.RowCount = partCount;
+                    qualGridParticipants.ColumnCount = infoColumns;
+
+                    qualGridParticipants.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    qualGridParticipants.Columns[0].Width = 20;
+                    qualGridParticipants.Columns[1].Width = 140;
+                    qualGridParticipants.Columns[2].Width = 60;
+                    qualGridParticipants.Columns[0].HeaderText = "№";
+                    qualGridParticipants.Columns[1].HeaderText = "Фамилия Имя";
+                    qualGridParticipants.Columns[2].HeaderText = "Страна";
+                    qualGridParticipants.Columns[3].HeaderText = "Кв.Время";
+                    qualGridParticipants.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    qualGridParticipants.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    qualGridParticipants.RowHeadersVisible = false;
+
+                    for (int i = 0; i < partCount; i++)
+                    {
+                        for (int j = 0; j < infoColumns; j++)
+                        {
+                            qualGridParticipants.Rows[i].Cells[j].Value = infoArray[i, j];
+                            qualGridParticipants.Rows[i].Cells[j].ReadOnly = true;
+                        }
+                    }
+                    foreach (DataGridViewColumn column in qualGridParticipants.Columns)
+                    {
+                        column.SortMode = DataGridViewColumnSortMode.NotSortable;
+                    }
+
+                    DataBank.AllTables(qualGridParticipants, "Квалификация", 1);
+
                     TableDistribution(partCount, groupCount, qualGrid);
                 }
                 TourWebButton.Enabled = true;
@@ -74,6 +121,9 @@ namespace WindowsFormsApp1
         */
         static void TableDistribution(int participantsCount, int groupCount, DataGridView QualGrid)
         {
+
+
+
             int peopleInGroupCount = participantsCount / groupCount;
             DataBank.countParticipantsInGroup = peopleInGroupCount;
             QualGrid.RowCount = groupCount;
@@ -188,8 +238,8 @@ namespace WindowsFormsApp1
                     finaleArr[(groupCount/2)-1, i] = numberReverse;
                     number = groupCount * (i + 1);
                     
-                    finaleArr[1, i] = sum;
-                    sum += groupCount * (i + 1);
+                    finaleArr[1, i] = finaleArr[1, i - 1] + 1;
+                    sum = finaleArr[1, i] + finaleArr[0, i];
                     finaleArr[groupCount - 2, i] = sum - finaleArr[groupCount - 1, i];
                     if (groupCount >= 8)
                     {
@@ -293,11 +343,11 @@ namespace WindowsFormsApp1
                 {
                     qualGrid.Rows[i].Cells[j].Value = finaleArr[i, j];
                     qualGrid.Columns[j].HeaderText = "Уч" + (j + 1).ToString();
-                    qualGrid.TopLeftHeaderCell.Value = "Группы";
                     qualGrid.Rows[i].Cells[j].ReadOnly = true;
                 }
                 qualGrid.Rows[i].HeaderCell.Value = (i + 1) + "        ";
             }
+            qualGrid.TopLeftHeaderCell.Value = "Группы";
             qualGrid.ColumnHeadersDefaultCellStyle.BackColor = Color.Gray;
             qualGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             qualGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
@@ -340,14 +390,14 @@ namespace WindowsFormsApp1
             if (groupCBQual.SelectedIndex == 0)
             {
                 countCBQual.Items.Add("16");
-                //countCBQual.Items.Add("24");
-                //countCBQual.Items.Add("32");
+                countCBQual.Items.Add("24");
+                countCBQual.Items.Add("32");
             }
             else if (groupCBQual.SelectedIndex == 1)
             {
                 countCBQual.Items.Add("32");
-                //countCBQual.Items.Add("48");
-                //countCBQual.Items.Add("64");
+                countCBQual.Items.Add("48");
+                countCBQual.Items.Add("64");
             }
             else
             {
@@ -357,6 +407,7 @@ namespace WindowsFormsApp1
         
         private void TourWebButtonMale_Click(object sender, EventArgs e)
         {
+            
             if (DataBank.countGroup == 16)
             {
                 TourWeb1_16 form = new TourWeb1_16();

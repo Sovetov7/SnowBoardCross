@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TourWeb1_4));
             this.backButton = new System.Windows.Forms.Button();
             this.nextButton = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
@@ -50,7 +51,7 @@
             // backButton
             // 
             this.backButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.backButton.Location = new System.Drawing.Point(12, 441);
+            this.backButton.Location = new System.Drawing.Point(12, 589);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(130, 80);
             this.backButton.TabIndex = 32;
@@ -62,7 +63,7 @@
             // 
             this.nextButton.Enabled = false;
             this.nextButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.nextButton.Location = new System.Drawing.Point(341, 441);
+            this.nextButton.Location = new System.Drawing.Point(341, 589);
             this.nextButton.Name = "nextButton";
             this.nextButton.Size = new System.Drawing.Size(179, 80);
             this.nextButton.TabIndex = 33;
@@ -95,7 +96,7 @@
             this.flowLayoutPanel1.Controls.Add(this.GridRace4);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 35);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(508, 400);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(508, 548);
             this.flowLayoutPanel1.TabIndex = 31;
             // 
             // label2
@@ -194,11 +195,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(532, 536);
+            this.ClientSize = new System.Drawing.Size(532, 681);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.nextButton);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.flowLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TourWeb1_4";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "1/4 Финала";
