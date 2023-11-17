@@ -22,7 +22,6 @@ namespace WindowsFormsApp1
         public DistrForm()
         {
             InitializeComponent();
-            DataBank.list = new List<DocumentInfo>();
             if (DataBank.choice == "М") Text += ": Мужчины";
             else Text += ": Женщины";
             countCBQual.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -34,6 +33,7 @@ namespace WindowsFormsApp1
         {
             try
             {
+                DataBank.list = new List<DocumentInfo>();
                 int partCount = Convert.ToInt32(countCBQual.Text);
                 int groupCount = Convert.ToInt32(groupCBQual.Text);
                 if (DataBank.countParticipantsInQual < partCount) MessageBox.Show("Выбранное количество участников превышает количество имеющихся");

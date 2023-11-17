@@ -45,7 +45,7 @@ namespace WindowsFormsApp1
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ошибка: " + ex.Message);
+                MessageBox.Show("Файл не выбран: " + ex.Message);
             }
         }
         private int CountGender(string gender)
@@ -226,6 +226,5 @@ namespace WindowsFormsApp1
             form.Show();
             Hide();
         }
-
     }
 }

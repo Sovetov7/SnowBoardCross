@@ -521,11 +521,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.label18.Location = new System.Drawing.Point(12, 9);
+            this.label18.Location = new System.Drawing.Point(15, 9);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(517, 26);
+            this.label18.Size = new System.Drawing.Size(457, 26);
             this.label18.TabIndex = 23;
-            this.label18.Text = "Отметьте победителей(Q), выбывших и их места";
+            this.label18.Text = "Отметьте победителей(Q) и занятые места";
             // 
             // TourWeb1_16
             // 
